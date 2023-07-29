@@ -4,7 +4,9 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native
 import { useDispatch } from 'react-redux';
 import { addToCart } from './redux/actions';
 
-const ProductList = ({ products }) => {
+const ProductList = ({route, navigation } ) => {
+const { products } = route.params; // Retrieve the products from route.params
+
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
@@ -23,11 +25,11 @@ const ProductList = ({ products }) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={products}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
+        <FlatList
+            data={products}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id.toString()}
+        />
     </View>
   );
 };
